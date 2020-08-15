@@ -28,3 +28,21 @@ Airbnb
 Javascript
 
 7) start the server in the /server dir `npm run dev`
+
+# Database design
+
+Mongoose database
+
+- Receipt table
+  - Receipt Id - Integer
+  - Date - DateTime
+  - Shop - String
+  - Total money spent - Float
+
+- Product table
+  - Name - String
+  - Quantity - Float
+  - Price - Float
+  - Receipt Id - Integer
+  - Product family - String
+  - Description - String
