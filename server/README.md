@@ -29,6 +29,10 @@ Javascript
 
 7) start the server in the /server dir `npm run dev`
 
+8) Install mongoose `npm i mongoose` for database models
+
+9) Install dotenv `npm i dotenv` for environment variables
+
 # Database design
 
 Mongoose database
@@ -37,7 +41,10 @@ Mongoose database
   - Receipt Id - Integer
   - Date - DateTime
   - Shop - String
-  - Total money spent - Float
+  - Spent - Float
+  - Payer - String
+  - Description - String
+  - Timestamp - DateTime
 
 - Product table
   - Name - String
@@ -46,3 +53,7 @@ Mongoose database
   - Receipt Id - Integer
   - Product family - String
   - Description - String
+
+## Defining the schema
+
+https://mongoosejs.com/docs/guide.html#definition
