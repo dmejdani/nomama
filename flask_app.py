@@ -11,7 +11,7 @@ wh_secret = os.getenv("WEBHOOK_SECRET")
 
 @app.route("/")
 def index():
-    return "Index Page, updated with webhooks!"
+    return "Index Page, updated with webhooks! 🎉"
 
 
 @app.route("/hello")
