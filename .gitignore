@@ -1,3 +1,6 @@
+# personal
+_local/
+
 ### Flask ###
 instance/*
 !instance/.gitignore

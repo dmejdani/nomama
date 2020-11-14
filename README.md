@@ -14,3 +14,6 @@ $ export FLASK_APP=hello.py
 $ export FLASK_ENV=development
 $ flask run
 ~~~
+
+## Deployment
+The webapp is deployed on Pythonanywhere. The deployment is set to be automatic via github webhooks. A 'push' event on the github repo triggers the update to the server.
