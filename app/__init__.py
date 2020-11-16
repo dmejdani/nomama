@@ -27,7 +27,7 @@ def create_app(test_config=None):
     @app.route('/')
     @app.route('/hello')
     def hello():
-        return 'Hello there 😉!'
+        return 'The deployment was successful! 🎉🎉🎉'
 
     @app.route("/update-server", methods=["POST"])
     def webhook():
