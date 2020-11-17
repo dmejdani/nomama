@@ -1,5 +1,6 @@
 # personal
 _local/
+default.db
 
 ### Flask ###
 instance/*

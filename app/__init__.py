@@ -2,32 +2,38 @@ import os
 from flask import Flask, request, abort
 import json
 import git
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 from utils import is_valid_signature
+from app.config import Config
 
 # env vars
 wh_secret = os.getenv("WEBHOOK_SECRET")
 
+db = SQLAlchemy()
+login_manager = LoginManager()
+login_manager.login_view = "users.login"
+login_manager.login_message_category = "info"
 
-def create_app(test_config=None):
+
+def create_app(config_class=Config):
     """Create and configure the app"""
-    app = Flask(__name__, instance_relative_config=True)
-
-    if test_config is None:
-        # load the instance config, if it exists, when not testing
-        app.config.from_pyfile('config.py', silent=True)
-    else:
-        # load the test config if passed in
-        app.config.from_mapping(test_config)
+    app = Flask(__name__)
+    app.config.from_object(Config)
 
     # ensure the instance folder exists
     os.makedirs(app.instance_path, exist_ok=True)
+
+    # initializing the flask extensions
+    db.init_app(app)
+    login_manager.init_app(app)
 
     # a simple page that says hello
     @app.route('/')
     @app.route('/hello')
     def hello():
-        return 'The deployment was successful! 🎉🎉🎉'
+        return 'The deployment was successful! 🙂'
 
     @app.route("/update-server", methods=["POST"])
     def webhook():
