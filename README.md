@@ -9,8 +9,15 @@ Design, build and deploy a web app that can keep track of our expenses. The pric
 We decided on using [Flask](https://flask.palletsprojects.com/en/1.1.x/) together with [Dash/Plotly](https://dash.plotly.com/).
 
 Setting up a development server:  
+
+Install requirements:  
 ~~~
-$ export FLASK_APP=hello.py
+pip install -r requirements.txt
+~~~
+
+Set the environment variables:  
+~~~
+$ export FLASK_APP=app
 $ export FLASK_ENV=development
 $ flask run
 ~~~
