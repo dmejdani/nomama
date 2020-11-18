@@ -7,4 +7,5 @@ load_dotenv(dotenv_path)
 
 
 class Config:
+    # 'mysql://username:password@localhost/db_name' for mysql db
     SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
