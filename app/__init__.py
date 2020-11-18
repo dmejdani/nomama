@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, abort
+from flask import Flask, request, abort, render_template
 import json
 import git
 from flask_sqlalchemy import SQLAlchemy
@@ -32,8 +32,8 @@ def create_app(config_class=Config):
     # a simple page that says hello
     @app.route('/')
     @app.route('/hello')
-    def hello():
-        return 'The deployment was successful! 🙂'
+    def home():
+        return render_template("index.html")
 
     @app.route("/update-server", methods=["POST"])
     def webhook():
