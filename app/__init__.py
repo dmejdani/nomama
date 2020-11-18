@@ -4,6 +4,7 @@ import json
 import git
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_bcrypt import Bcrypt
 
 from utils import is_valid_signature
 from app.config import Config
