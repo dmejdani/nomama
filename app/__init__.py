@@ -33,16 +33,20 @@ def create_app(config_class=Config):
     from app import models
 
     # a simple page that says hello
-    @app.route('/')
-    @app.route('/hello')
+    @ app.route('/')
+    @ app.route('/hello')
     def home():
         return render_template("index.html")
 
-    @app.route('/login')
+    @ app.route('/login')
     def login():
         return render_template("login.html")
 
-    @app.route("/update-server", methods=["POST"])
+    @ app.route('/receipt')
+    def receipt():
+        return render_template("receipt.html")
+
+    @ app.route("/update-server", methods=["POST"])
     def webhook():
         if request.method == "POST":
             abort_code = 418
@@ -98,5 +102,8 @@ def create_app(config_class=Config):
 
             return f"Updated PythonAnywhere successfully to commit {build_commit}", 200
         return "Bad request", 400
+
+    if __name__ == "__main__":
+        app.run(debug=True)
 
     return app
