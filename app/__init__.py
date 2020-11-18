@@ -34,7 +34,7 @@ def create_app(config_class=Config):
     @app.route('/')
     @app.route('/hello')
     def home():
-        return render_template("index.html")
+        return "hh"
 
     @app.route("/update-server", methods=["POST"])
     def webhook():
