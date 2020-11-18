@@ -30,6 +30,8 @@ def create_app(config_class=Config):
     db.init_app(app)
     login_manager.init_app(app)
 
+    from app import models
+
     # a simple page that says hello
     @app.route('/')
     @app.route('/hello')
