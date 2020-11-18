@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, abort, render_template
+from flask import Flask, request, abort, render_template, flash, url_for
 import json
 import git
 from flask_sqlalchemy import SQLAlchemy
@@ -36,7 +36,11 @@ def create_app(config_class=Config):
     @app.route('/')
     @app.route('/hello')
     def home():
-        return "hh"
+        return render_template("index.html")
+
+    @app.route('/login')
+    def login():
+        return render_template("login.html")
 
     @app.route("/update-server", methods=["POST"])
     def webhook():
