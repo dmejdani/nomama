@@ -2,34 +2,25 @@
 {% block title %} login {% endblock %}
 
 {% block content %}
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-{% for msg in messages %}
-<p>{{msg}}</p>
-{% endfor %}
-{% endif %}
-{% endwith %}
-
-
-
-<p>login page</p>
-
-<form action="#" method="post">
-    <div class="container loginpage">
-
-        <div class="form-group">
-            <label for="loginid">ID</label>
-            <input type="text" class="form-control" id="loginid" placeholder="ID">
-        </div>
-        <div class="form-group">
-            <label for="loginpw">PW</label>
-            <input type="text" class="form-control" id="loginpw" placeholder="Password">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Sign in</button>
-
+<div class="row justify-content-md-center">
+    <div class="col-md-5">
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom">Login</legend>
+                <div class="form-group">
+                    {{ form.username.label(class="form-control-label") }}
+                    {{ form.username(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {{ form.password(class="form-control") }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>        
     </div>
-</form>
-
-
+</div>
 {% endblock %}

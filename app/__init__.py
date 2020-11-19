@@ -3,16 +3,17 @@ from flask import Flask, request, abort, render_template, flash, url_for
 import json
 import git
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
+from flask_login import LoginManager, login_required
 from flask_bcrypt import Bcrypt
 
-from utils import is_valid_signature
+from app.utils import is_valid_signature
 from app.config import Config
 
 # env vars
 wh_secret = os.getenv("WEBHOOK_SECRET")
 
 db = SQLAlchemy()
+bcrypt = Bcrypt()
 login_manager = LoginManager()
 login_manager.login_view = "users.login"
 login_manager.login_message_category = "info"
@@ -24,29 +25,32 @@ def create_app(config_class=Config):
     app.config.from_object(Config)
 
     # ensure the instance folder exists
-    os.makedirs(app.instance_path, exist_ok=True)
+    # os.makedirs(app.instance_path, exist_ok=True)
 
     # initializing the flask extensions
     db.init_app(app)
+    bcrypt.init_app(app)
     login_manager.init_app(app)
 
-    from app import models
+    from app.users.routes import users
+    app.register_blueprint(users)
 
     # a simple page that says hello
-    @ app.route('/')
-    @ app.route('/hello')
+    @app.route('/')
+    @login_required
     def home():
         return render_template("index.html")
 
-    @ app.route('/login')
+    @app.route('/login')
     def login():
         return render_template("login.html")
 
-    @ app.route('/receipt')
+    @app.route('/receipt')
+    @login_required
     def receipt():
         return render_template("receipt.html")
 
-    @ app.route("/update-server", methods=["POST"])
+    @app.route("/update-server", methods=["POST"])
     def webhook():
         if request.method == "POST":
             abort_code = 418
@@ -102,8 +106,5 @@ def create_app(config_class=Config):
 
             return f"Updated PythonAnywhere successfully to commit {build_commit}", 200
         return "Bad request", 400
-
-    if __name__ == "__main__":
-        app.run(debug=True)
 
     return app

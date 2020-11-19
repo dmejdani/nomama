@@ -2,46 +2,39 @@
 {% block title %} receipt PAGE {% endblock %}
 
 {% block content %}
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-{% for msg in messages %}
-<p>{{msg}}</p>
-{% endfor %}
-{% endif %}
-{% endwith %}
+<div class="row justify-content-md-center">
+    <div class="col-md-5">
+        <form action="#" method="post">
+            <div class="form-row">
+                <div class="col-md-3 mb-3">
+                    <label for="receiptdate">Date</label>
+                    <input type="date" class="form-control" id="receiptdate" placeholder="date" value="date" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="receiptshop">shop</label>
+                    <input type="text" class="form-control" id="receiptshop" placeholder="shop"
+                        value="{{receiptshop if receiptshop}}" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="receiptloc">location</label>
+                    <input type="text" class="form-control" id="receiptloc" placeholder="location"
+                        value="{{receiptloc if receiptloc}}" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="receiptpayer">payer</label>
+                    <input type="text" class="form-control" id="receiptpayer" placeholder="payer"
+                        value="{{receiptpayer if receiptpayer}}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-3 mb-3">
+                    <label for="totprice">total price</label>
+                    <input type="integer" class="form-control" id="totprice" placeholder="City" required>
+                </div>
+            </div>
 
-
-
-<form action="#" method="post">
-    <div class="form-row">
-        <div class="col-md-3 mb-3">
-            <label for="receiptdate">Date</label>
-            <input type="date" class="form-control" id="receiptdate" placeholder="date" value="date" required>
-        </div>
-        <div class="col-md-3 mb-3">
-            <label for="receiptshop">shop</label>
-            <input type="text" class="form-control" id="receiptshop" placeholder="shop"
-                value="{{receiptshop if receiptshop}}" required>
-        </div>
-        <div class="col-md-3 mb-3">
-            <label for="receiptloc">location</label>
-            <input type="text" class="form-control" id="receiptloc" placeholder="location"
-                value="{{receiptloc if receiptloc}}" required>
-        </div>
-        <div class="col-md-3 mb-3">
-            <label for="receiptpayer">payer</label>
-            <input type="text" class="form-control" id="receiptpayer" placeholder="payer"
-                value="{{receiptpayer if receiptpayer}}" required>
-        </div>
+            <button class="btn btn-primary" type="submit" value="submit">Submit</button>
+        </form>
     </div>
-    <div class="form-row">
-        <div class="col-md-3 mb-3">
-            <label for="totprice">total price</label>
-            <input type="integer" class="form-control" id="totprice" placeholder="City" required>
-        </div>
-    </div>
-
-    <button class="btn btn-primary" type="submit" value="submit">Submit</button>
-</form>
-
+</div>
 {% endblock %}
