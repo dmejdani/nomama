@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, abort, render_template, flash, url_for
+from flask import Flask, request, abort, render_template, flash, url_for, session
 import json
 import git
 from flask_sqlalchemy import SQLAlchemy
@@ -37,13 +37,8 @@ def create_app(config_class=Config):
 
     # a simple page that says hello
     @app.route('/')
-    @login_required
     def home():
         return render_template("index.html")
-
-    @app.route('/login')
-    def login():
-        return render_template("login.html")
 
     @app.route('/receipt')
     @login_required

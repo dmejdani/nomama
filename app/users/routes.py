@@ -1,4 +1,4 @@
-from flask import Blueprint, url_for, redirect, render_template, flash, request
+from flask import Blueprint, url_for, redirect, render_template, flash, request, session
 from flask_login import current_user, login_user, logout_user
 from app.users.forms import LoginForm
 from app.models import User
@@ -17,6 +17,7 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data.encode('utf-8')):
             login_user(user)
             next_page = request.args.get("next")
+            session['logged_in'] = True
             return redirect(next_page) if next_page else redirect(url_for("home"))
         else:
             flash("Login unsuccessful! Please check username and password!", "danger")
@@ -26,4 +27,5 @@ def login():
 @users.route("/logout")
 def logout():
     logout_user()
+    session['logged_in'] = False
     return redirect(url_for("home"))
