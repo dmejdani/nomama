@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_required
 from flask_bcrypt import Bcrypt
+import git
 
 from app.config import Config
 
@@ -32,6 +33,8 @@ def create_app(config_class=Config):
     # a simple page that says hello
     @app.route('/')
     def home():
-        return render_template("index.html")
+        repo = git.Repo(search_parent_directories=True)
+        sha = repo.head.object.hexsha
+        return render_template("index.html", commit_sha=sha)
 
     return app
