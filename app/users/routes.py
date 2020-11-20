@@ -14,10 +14,6 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        print(user.password)
-        print(type(user.password))
-        print(form.password.data)
-        print(type(form.password.data))
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
             next_page = request.args.get("next")
