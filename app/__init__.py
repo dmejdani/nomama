@@ -35,15 +35,13 @@ def create_app(config_class=Config):
     from app.users.routes import users
     app.register_blueprint(users)
 
+    from app.receipt import receipts
+    app.register_blueprint(receipts)
+
     # a simple page that says hello
     @app.route('/')
     def home():
         return render_template("index.html")
-
-    @app.route('/receipt')
-    @login_required
-    def receipt():
-        return render_template("receipt.html")
 
     @app.route("/update-server", methods=["POST"])
     def webhook():

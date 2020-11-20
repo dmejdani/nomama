@@ -29,13 +29,16 @@ class Receipt(db.Model):
     def __repr__(self):
         return f"Receipt({self.date}, {self.shop}, {self.cost})"
 
+
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False)
     price = db.Column(db.Float, nullable=False)
-    quantity = db.Column(db.Float, nullable=False)
-    unit = db.Column(db.String, nullable=False)
-    receipt_id = db.Column(db.Integer, db.ForeignKey('receipt.id'), nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+    unit = db.Column(db.String(30), nullable=False)
+    catagory = db.Column(db.String(30), nullable=False)
+    receipt_id = db.Column(db.Integer, db.ForeignKey(
+        'receipt.id'), nullable=False)
 
     def __repr__(self):
         return f"Item({self.name}, {self.price}, receipt={self.receipt_id})"

@@ -5,67 +5,71 @@
 <div class="row justify-content-md-center">
     <div class="col-md-5">
         <form action="#" method="post">
-            <div class="form-row">
-                <div class="col-md-3 mb-3">
-                    <label for="receiptdate">Date</label>
-                    <input type="date" class="form-control" id="receiptdate" placeholder="date" value="date" required>
+            <div class="container" id="bodyreceipt">
+                <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                        <label for="receiptdate">Date</label>
+                        <input type="date" class="form-control" name="receiptdate" placeholder="date" value="date"
+                            required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="receiptshop">shop</label>
+                        <input type="text" class="form-control" name="receiptshop" placeholder="shop"
+                            value="{{receiptshop if receiptshop}}" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="receiptloc">location</label>
+                        <input type="text" class="form-control" name="receiptloc" placeholder="location"
+                            value="{{receiptloc if receiptloc}}" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="receiptpayer">payer</label>
+                        <input type="text" class="form-control" name="receiptpayer" placeholder="payer"
+                            value="{{receiptpayer if receiptpayer}}" required>
+                    </div>
                 </div>
-                <div class="col-md-3 mb-3">
-                    <label for="receiptshop">shop</label>
-                    <input type="text" class="form-control" id="receiptshop" placeholder="shop"
-                        value="{{receiptshop if receiptshop}}" required>
+                <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                        <label for="totprice">total price</label>
+                        <input type="integer" class="form-control" name="totprice" placeholder="price" required>
+                    </div>
                 </div>
-                <div class="col-md-3 mb-3">
-                    <label for="receiptloc">location</label>
-                    <input type="text" class="form-control" id="receiptloc" placeholder="location"
-                        value="{{receiptloc if receiptloc}}" required>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label for="receiptpayer">payer</label>
-                    <input type="text" class="form-control" id="receiptpayer" placeholder="payer"
-                        value="{{receiptpayer if receiptpayer}}" required>
+
+
+                <div class="form-row" id="itemform">
+                    <div class="col-md-3 mb-3">
+                        <label for="receiptname">name</label>
+                        <input type="text" class="form-control" name="receiptname" placeholder="name" value="name"
+                            required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="price">price</label>
+                        <input type="float" class="form-control" name="price" placeholder="price"
+                            value="{{price if price}}" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="quantity">quantity</label>
+                        <input type="integer" class="form-control" name="quantity" placeholder="quantity"
+                            value="{{quantity if quantity}}" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="catagory">catagory</label>
+                        <input type="text" class="form-control" name="catagory" placeholder="catagory"
+                            value="{{catagory if catagory}}" required>
+                    </div>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="col-md-3 mb-3">
-                    <label for="totprice">total price</label>
-                    <input type="integer" class="form-control" id="totprice" placeholder="price" required>
-                </div>
-            </div>
+            <button id="itemadd" type="button" class="btn btn-outline-primary">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path fill-rule="evenodd"
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+            </button>
 
 
-            <div class="form-row">
-                <div class="col-md-3 mb-3">
-                    <label for="receiptname">name</label>
-                    <input type="text" class="form-control" id="receiptname" placeholder="name" value="name" required>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label for="price">price</label>
-                    <input type="float" class="form-control" id="price" placeholder="price" value="{{price if price}}"
-                        required>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label for="quantity">quantity</label>
-                    <input type="integer" class="form-control" id="quantity" placeholder="quantity"
-                        value="{{quantity if quantity}}" required>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label for="catagory">catagory</label>
-                    <input type="text" class="form-control" id="catagory" placeholder="catagory"
-                        value="{{catagory if catagory}}" required>
-                </div>
-
-                <button type="button" class="btn btn-outline-primary">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                        <path fill-rule="evenodd"
-                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                    </svg>
-                </button>
-
-            </div>
             <button class="btn btn-primary" type="submit" value="submit">Submit</button>
         </form>
     </div>
