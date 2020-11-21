@@ -19,10 +19,10 @@ def receipt():
         payer = request.form["receiptpayer"]
         totprice = request.form["totprice"]
 
-        receipt = Receipt(date=receiptdate, shop=receiptshop,
-                          cost=totprice, payer=payer, location=receiptloc)
+        receiptadd = Receipt(date=receiptdate, shop=receiptshop, cost=totprice,
+                             payer=payer, location=receiptloc)
 
-        db.session.add(receipt)
+        db.session.add(receiptadd)
         db.session.commit()
 
         # print(receipt)

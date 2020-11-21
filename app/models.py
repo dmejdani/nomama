@@ -1,6 +1,6 @@
 from app import db, login_manager
 from flask_login import UserMixin
-from datetime import datetime
+from datetime import datetime, date
 
 
 @login_manager.user_loader
@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
 
 class Receipt(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    date = db.Column(db.Date, nullable=False)
     shop = db.Column(db.String(20), nullable=False)
     cost = db.Column(db.Float, nullable=False)
     payer = db.Column(db.String(10), nullable=True)
