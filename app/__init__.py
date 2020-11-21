@@ -31,11 +31,18 @@ def create_app(config_class=Config):
     app.register_blueprint(receipts)
     app.register_blueprint(utils)
 
+    from app.models import Receipt
+
     # a simple page that says hello
     @app.route('/')
     def home():
         repo = git.Repo(os.path.join(__file__, "../.."))
         sha = repo.head.object.hexsha
         return render_template("index.html", commit_sha=sha)
+
+    @app.route('/view')
+    @login_required
+    def view():
+        return render_template("view.html", values=Receipt.query.all())
 
     return app
