@@ -27,7 +27,7 @@ class Receipt(db.Model):
     posts = db.relationship("Item", backref="receipt", lazy=True)
 
     def __repr__(self):
-        return f"Receipt({self.date}, {self.shop}, {self.cost})"
+        return f"Receipt({self.id}, {self.date}, {self.shop}, {self.cost})"
 
 
 class Item(db.Model):
@@ -35,7 +35,6 @@ class Item(db.Model):
     name = db.Column(db.String(30), nullable=False)
     price = db.Column(db.Float, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
-    unit = db.Column(db.String(30), nullable=True)
     category = db.Column(db.String(30), nullable=False)
     receipt_id = db.Column(db.Integer, db.ForeignKey(
         'receipt.id'), nullable=False)
