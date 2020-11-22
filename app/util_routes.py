@@ -1,4 +1,4 @@
-from flask import Blueprint, request, abort
+from flask import Blueprint, request, abort, current_app
 import hashlib
 import hmac
 import json
@@ -75,3 +75,8 @@ def webhook():
 
         return f"Updated PythonAnywhere successfully to commit {build_commit}", 200
     return "Bad request", 400
+
+
+@utils.route('/favicon.ico')
+def favicon():
+    return current_app.send_static_file("favicon.ico")
