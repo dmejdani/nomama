@@ -22,10 +22,20 @@ def receipt():
         receiptadd = Receipt(date=receiptdate, shop=receiptshop, cost=totprice,
                              payer=payer, location=receiptloc)
 
-        db.session.add(receiptadd)
-        db.session.commit()
+        itemname = request.form["itemname"]
+        itemprice = request.form["price"]
+        itemquantity = requst.form["quantity"]
+        itemunit = request.form["itemweight"]
+        itemcatagory = request.form["catagory"]
 
-        # print(receipt)
-        return redirect(url_for("receipts.receipt"))
+        itemadd = Item(name=itemname, price=itemprice,
+                       quantity=itemquantity, unit=itemunit, catagory=itemcatagory)
+
+    db.session.add(receiptadd)
+    db.session.add(itemadd)
+    db.session.commit()
+
+    # print(receipt)
+    return redirect(url_for("receipts.receipt"))
     else:
         return render_template("receipt.html")

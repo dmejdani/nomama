@@ -34,24 +34,24 @@
 
                 <div class="form-row" id="itemform">
                     <div class="col-md-3 mb-3">
-                        <label for="receiptname">name</label>
-                        <input type="text" class="form-control" name="receiptname" placeholder="name" value="name"
-                            required>
+                        <label for="itemname">product name</label>
+                        <input type="text" class="form-control" name="itemname" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="price">price</label>
-                        <input type="float" class="form-control" name="price" placeholder="price"
-                            value="{{price if price}}" required>
+                        <input type="float" class="form-control" name="price" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="quantity">quantity</label>
-                        <input type="integer" class="form-control" name="quantity" placeholder="quantity"
-                            value="{{quantity if quantity}}" required>
+                        <input type="integer" class="form-control" name="quantity" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="itemweight">weight</label>
+                        <input type="integer" class="form-control" name="itemweight">
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="catagory">catagory</label>
-                        <input type="text" class="form-control" name="catagory" placeholder="catagory"
-                            value="{{catagory if catagory}}" required>
+                        <input type="text" class="form-control" name="catagory" required>
                     </div>
                 </div>
             </div>

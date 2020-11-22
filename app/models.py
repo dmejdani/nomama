@@ -35,7 +35,7 @@ class Item(db.Model):
     name = db.Column(db.String(30), nullable=False)
     price = db.Column(db.Float, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
-    unit = db.Column(db.String(30), nullable=False)
+    unit = db.Column(db.String(30), nullable=True)
     category = db.Column(db.String(30), nullable=False)
     receipt_id = db.Column(db.Integer, db.ForeignKey(
         'receipt.id'), nullable=False)
