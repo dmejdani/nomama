@@ -34,7 +34,7 @@ def receipt():
             receiptadd = Receipt(date=receiptdate, shop=receiptshop, cost=totprice,
                                  payer=payer, location=receiptloc)
             db.session.add(receiptadd)
-            db.session.commit()
+            db.session.flush()
 
             itemname_list = request.form.getlist("itemname")
             itemprice_list = request.form.getlist("price")
@@ -45,13 +45,17 @@ def receipt():
                 itemadd = Item(name=itemname, price=itemprice, quantity=itemquantity,
                                category=itemcategory, receipt_id=receiptadd.id)
                 db.session.add(itemadd)
-
-            db.session.commit()
-            flash("The new receipt was added successfully! 🙂", category="info")
-            return redirect(url_for("receipts.receipt"))
+        # go here if something goes wrong in the try block
         except:
             traceback.print_exc()
-            flash("Something went wrong! 😟", category="danger")
+            db.session.rollback()
+            flash(
+                "Something went wrong! 😟 Database session rolled back successfully!", category="danger")
+            return redirect(url_for("receipts.receipt"))
+        # commit changes if nothing went wrong in the try block
+        else:
+            db.session.commit()
+            flash("The new receipt was added successfully! 🙂", category="info")
             return redirect(url_for("receipts.receipt"))
 
     else:
