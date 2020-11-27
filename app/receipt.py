@@ -24,27 +24,33 @@ def receipt():
             receiptshop = request.form.get("receiptshop")
             receiptloc = request.form.get("receiptloc")
             payer = request.form.get("receiptpayer")
-            totprice = request.form.get("totprice")
-
-            if not is_new_receipt(receiptdate, totprice):
-                flash(
-                    f"There is already a receipt with date: {receiptdate}  and total price: {totprice}!", category="warning")
-                return redirect(url_for("receipts.receipt"))
-
-            receiptadd = Receipt(date=receiptdate, shop=receiptshop, cost=totprice,
-                                 payer=payer, location=receiptloc)
-            db.session.add(receiptadd)
-            db.session.flush()
 
             itemname_list = request.form.getlist("itemname")
             itemprice_list = request.form.getlist("price")
             itemquantity_list = request.form.getlist("quantity")
             itemcategory_list = request.form.getlist("category")
 
+            totprice = 0
+            for i in range(len(itemprice_list)):
+                totprice += float(itemprice_list[i])*int(itemquantity_list[i])
+            print(totprice)
+
+            receiptadd = Receipt(date=receiptdate, shop=receiptshop, cost=totprice,
+                                 payer=payer, location=receiptloc)
+
+            db.session.add(receiptadd)
+            db.session.flush()
+
             for itemname, itemprice, itemquantity, itemcategory in zip(itemname_list, itemprice_list, itemquantity_list, itemcategory_list):
                 itemadd = Item(name=itemname, price=itemprice, quantity=itemquantity,
                                category=itemcategory, receipt_id=receiptadd.id)
                 db.session.add(itemadd)
+
+            if not is_new_receipt(receiptdate, totprice):
+                flash(
+                    f"There is already a receipt with date: {receiptdate}  and total price: {totprice}!", category="warning")
+                return redirect(url_for("receipts.receipt"))
+
         # go here if something goes wrong in the try block
         except:
             traceback.print_exc()
