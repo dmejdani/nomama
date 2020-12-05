@@ -9,4 +9,7 @@ load_dotenv(dotenv_path)
 class Config:
     # 'mysql://username:password@localhost/db_name' for mysql db
     SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
+    # in seconds; this depends on the configuration of the DB backend
+    SQLALCHEMY_POOL_RECYCLE = 240
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = os.getenv('SECRET_KEY')
