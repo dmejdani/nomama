@@ -37,7 +37,7 @@ def create_app(config_class=Config):
     @app.route('/')
     def home():
         repo = git.Repo(os.path.join(__file__, "../.."))
-        sha = repo.head.object.hexsha
+        sha = repo.head.object.hexsha[:7]
         return render_template("index.html", commit_sha=sha)
 
     @app.route('/view')
