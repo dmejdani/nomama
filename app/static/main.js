@@ -5,7 +5,9 @@ document.getElementById('receiptdate').valueAsDate = new Date();
 var items = 1;
 
 function add_item() {
-    jQuery("#itemform").clone().appendTo("#bodyreceipt").attr('id', 'item_' + items);
+    jQuery("#itemform").clone().each( function () {
+        jQuery(this).find("input").val("");
+    }).appendTo("#bodyreceipt").attr('id', 'item_' + items);
     items = items + 1;
 };
 
