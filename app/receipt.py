@@ -17,6 +17,7 @@ def is_new_receipt(date, cost):
 @login_required
 def receipt():
     if request.method == "POST":
+        totprice = 0        
         try:
             # receipt = request.form
             receiptdate = request.form.get("receiptdate")
@@ -30,11 +31,9 @@ def receipt():
             itemquantity_list = request.form.getlist("quantity")
             itemcategory_list = request.form.getlist("category")
 
-            totprice = 0
             for i in range(len(itemprice_list)):
                 totprice += float(itemprice_list[i])*int(itemquantity_list[i])
-            print(totprice)
-
+            
             receiptadd = Receipt(date=receiptdate, shop=receiptshop, cost=totprice,
                                  payer=payer, location=receiptloc)
 
@@ -61,7 +60,7 @@ def receipt():
         # commit changes if nothing went wrong in the try block
         else:
             db.session.commit()
-            flash("The new receipt was added successfully! 🙂", category="info")
+            flash(f"The new receipt (total price = {totprice}) was added successfully! 🙂", category="info")
             return redirect(url_for("receipts.receipt"))
 
     else:
