@@ -6,6 +6,7 @@ import git
 import os
 
 from app.config import Config
+from app.utils import register_dashapp
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
@@ -44,5 +45,10 @@ def create_app(config_class=Config):
     @login_required
     def view():
         return render_template("view.html")  # , values=Receipt.query.all())
+
+    # registering the Dash apps into the Flask app
+    from app.dash_apps.db_access.layout import layout
+    from app.dash_apps.db_access.callbacks import register_callbacks
+    register_dashapp(app, "DB Access", "/db-access/", layout=layout, register_callbacks_fun=register_callbacks, protect=True)
 
     return app

@@ -1,0 +1,13 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.alert-dismissible .close {
+    padding: 0px 0px 0px 0px;
+    vertical-align: bottom;
+}
+
+.label-info {
+    margin-top: 8px;
+}
