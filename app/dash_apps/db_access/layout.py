@@ -25,8 +25,10 @@ table_query = dbc.Row(
             columns=[{'name': '', 'id': 'None'}],
             data=[{}],
             sort_action='native',
+            sort_mode='multi',
             filter_action='native',
-            style_cell={'textAlign': 'center'}
+            style_cell={'textAlign': 'center'},
+            style_table={'maxHeight': 'calc(100% - 206)'}
         )
     ]),
     style={'overflowX': 'auto', 'maxHeight': 'calc(100% - 206)'}
