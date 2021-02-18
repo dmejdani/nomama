@@ -17,21 +17,19 @@ db_query_section = html.Div(
     ]
 )
 
-table_query = dbc.Row(
-    dbc.Col(
-    [
-        dt.DataTable(
-            id='table',
-            columns=[{'name': '', 'id': 'None'}],
-            data=[{}],
-            sort_action='native',
-            sort_mode='multi',
-            filter_action='native',
-            style_cell={'textAlign': 'center'},
-            style_table={'maxHeight': 'calc(100% - 206)'}
-        )
-    ]),
-    style={'overflowX': 'auto', 'maxHeight': 'calc(100% - 206)'}
+table_query = html.Div(
+    dt.DataTable(
+        id='table',
+        columns=[{'name': '', 'id': 'None'}],
+        data=[{}],
+        sort_action='native',
+        sort_mode='multi',
+        filter_action='native',
+        style_cell={'textAlign': 'center'},
+        style_table={'overflowX': 'auto', 'overflowY': 'auto'},
+        page_size=20
+    ),
+    style={'maxHeight':'calc(100% - 280px)', 'overflowY': 'auto'}
 )
 
 dropdown_select_axes = html.Div(
